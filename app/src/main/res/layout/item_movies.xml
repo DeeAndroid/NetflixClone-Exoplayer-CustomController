@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="movieDetails"
+            type="com.dee.popularmovies.data.res.ResultsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/moviecard"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_140sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movieposter"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:adjustViewBounds="true"
+                android:foreground="#50000000"
+                android:orientation="vertical"
+                android:scaleType="centerCrop" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/movietitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/layoutBottom"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@{movieDetails.name!=null ? movieDetails.name :`-`}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                tools:text="@string/label_name_of_the_movie" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/countrylanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:text="@{movieDetails.originalLanguage !=null ? movieDetails.originalLanguage :`-`}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Tamil" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_vertical"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/rounded_boder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:minWidth="@dimen/_30sdp"
+                android:text="@{movieDetails.voteAverage!=null ? movieDetails.voteAverage.toString():`-`}"
+                android:textColor="@color/bright_gray"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:visibility="@{movieDetails.voteAverage!=null ? View.VISIBLE :View.GONE,default=visible}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom|center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:weightSum="3">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/votes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{movieDetails.voteCount !=null ? movieDetails.voteCount+` Ratings` :`-`}"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="10d 14h" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -1,0 +1,133 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'  // For both java and kotlin
+
+}
+
+android {
+    namespace 'com.dee.popularmovies'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.dee.popularmovies"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+            buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/movie/"'
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/tv/"'
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    // Kotlin - Core
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.20"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
+    // Android - JetPack - Core
+    implementation "androidx.core:core-ktx:1.9.0"
+
+    // Multidex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Android - JetPack - Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    implementation "androidx.fragment:fragment-ktx:1.5.5"
+
+    // For ViewModel
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
+    //  Networking - Okhttp
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10"
+
+    //  Networking - Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+
+    //Hilt
+    implementation 'com.google.dagger:hilt-android:2.43.2'
+    kapt 'com.google.dagger:hilt-android-compiler:2.43.2'
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    //kapt
+    kapt('org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0')
+
+    implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
+
+    //  JetPack - Navigation
+    implementation "androidx.navigation:navigation-runtime-ktx:2.5.3"
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+
+    //  Glide
+    kapt "com.github.bumptech.glide:compiler:4.12.0"
+    implementation "com.github.bumptech.glide:glide:4.12.0"
+    // DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //Exo Player
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.1'
+
+    //shimmer effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation project(path: ':sdp-android')
+    implementation project(path: ':ssp-android')
+}
